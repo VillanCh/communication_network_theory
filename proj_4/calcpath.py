@@ -219,14 +219,13 @@ if __name__ == '__main__':
         tmp.dial_calc(field='weight',capability_min=0)
     stop = int(time.time()*1000)
     print 'dial 1000 times cost %d ms' % (stop - start)
-    
     print 'the route is ',tmp.get_path()
     print 'the min of weight',tmp.get_weight()     
+    
     """
     calc the dijkstraAlg
     the cost of executing dial alg 1000 times
-    """
-    start = int(time.time()*1000)
+    """  
     for i in range(1000):
         tmp.dijkstra_calc(field='weight',capability_min=0)
     stop = int(time.time()*1000)
