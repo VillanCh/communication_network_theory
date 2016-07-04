@@ -19,7 +19,7 @@ def get_barabasi_albert_graph(n, m):
     for i in range(len(ret)):
         tag_pair = ret[i]
         G[tag_pair[0]][tag_pair[1]]['passing_rate'] = random.randint(1,100)/100.0
-        G[tag_pair[0]][tag_pair[1]]['weight'] = random.randint(1,10)
+        G[tag_pair[0]][tag_pair[1]]['weight'] = random.randint(10,100)
         G[tag_pair[0]][tag_pair[1]]['capability'] = random.randint(1,50)
         
         
