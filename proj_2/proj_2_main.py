@@ -8,8 +8,8 @@ import matplotlib.pyplot as ply
 # you can fill any value you want to test the program
 import randomgraph
 
-#the algorithm in the dijkstracalc module
-from dijkstracalc import DijkstraCalc
+#the algorithm in the calcpath module
+from calcpath import PathCalc
 
 
 #random.seed(a=time.time())
@@ -33,7 +33,7 @@ MAN:
     import networkx as nx
     import matplotlib.pyplot as ply
     import randomgraph
-    from dijkstracalc import DijkstraCalc
+    from calcpath import PathCalc
 
     G = randomgraph.get_barabasi_albert_grahp(12,5) 
     #the param you can input what you want but remember : the first param is larger than the second
@@ -41,11 +41,11 @@ MAN:
     #the second param must be less than the first and larger than ZERO
     
     
-    calc_obj = DijkstraCalc(G = G, start_point=4, end_point=7) 
+    calc_obj = PathCalc(G = G, start_point=4, end_point=7) 
     #just input the start and the end 
     #G is the graph you generated
     
-    calc_obj.dijstra_calc(field='weight',capability_min=0)
+    calc_obj.dijkstra_calc(field='weight',capability_min=0)
     #This method need 2 argvs:
     #    the first param field is the 'passing_rate' or 'weight', it shows the method you want
     #to calculate the route. if you choose passing_rate, you should know if can compute the route
@@ -82,8 +82,8 @@ NOTE:
     <code>
     G = randomgraph.get_barabasi_albert_graph(6,2)
     print G.edge
-    tmp = DijkstraCalc(G = G, start_point=3, end_point=1)
-    tmp.dijstra_calc(field='weight',capability_min=0)
+    tmp = PathCalc(G = G, start_point=3, end_point=1)
+    tmp.dijkstra_calc(field='weight',capability_min=0)
     nx.drawing.draw_networkx(G)
     print 'the route is ',tmp.get_path()
     #print tmp.get_passing_rate()
@@ -110,8 +110,8 @@ NOTE:
     in:
     G = randomgraph.get_barabasi_albert_graph(6,2)
     print 'the graph is ', G.edge
-    tmp = DijkstraCalc(G = G, start_point=3, end_point=1)
-    tmp.dijstra_calc(field='passing_rate',capability_min=0)
+    tmp = PathCalc(G = G, start_point=3, end_point=1)
+    tmp.dijkstra_calc(field='passing_rate',capability_min=0)
     nx.drawing.draw_networkx(G)
     print 'the route is ',tmp.get_path()
     print 'the max of passing rate',tmp.get_passing_rate()
@@ -134,9 +134,9 @@ NOTE:
     in:
         G = randomgraph.get_barabasi_albert_graph(15,2)
         print 'the graph is ', G.edge
-        tmp = DijkstraCalc(G = G, start_point=3, end_point=1)
+        tmp = PathCalc(G = G, start_point=3, end_point=1)
         try:
-            tmp.dijstra_calc(field='weight',capability_min=25)
+            tmp.dijkstra_calc(field='weight',capability_min=25)
             print 'the route is ',tmp.get_path()
             #print 'the max of passing rate',tmp.get_passing_rate()
             print 'the min of weight',tmp.get_weight()        
@@ -179,14 +179,13 @@ if __name__ == '__main__':
     """
     G = randomgraph.get_barabasi_albert_graph(15,2)
     print 'the graph is ', G.edge
-    tmp = DijkstraCalc(G = G, start_point=3, end_point=1)
-    try:
-        tmp.dijstra_calc(field='weight',capability_min=25)
-        print 'the route is ',tmp.get_path()
-        #print 'the max of passing rate',tmp.get_passing_rate()
-        print 'the min of weight',tmp.get_weight()        
-    except StandardError:
-        print 'Fail! NO PATH'
+    tmp = PathCalc(G = G, start_point=3, end_point=1)
+    
+    tmp.dijkstra_calc(field='weight',capability_min=20)
+    print 'the route is ',tmp.get_path()
+    #print 'the max of passing rate',tmp.get_passing_rate()
+    print 'the min of weight',tmp.get_weight()        
+
     nx.drawing.draw_networkx(G)
 
     ply.show()
